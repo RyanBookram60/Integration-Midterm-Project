@@ -2,6 +2,13 @@ package com.integration.app;
 
 import java.util.Scanner;
 
+/**
+ * Runs the menu system for the user to interact with the To-Do list.
+ *
+ * @author Ryan Bookram
+ * @version 1.0
+ */
+
 public class TDMain {
 
     public static void main(String[] args) {
