@@ -24,11 +24,12 @@ pipeline {
             steps {
                 script {
                     // Use withRegistry to push the image to Docker Hub
-                    withRegistry('https://index.docker.io', '058d6ef7-a988-4cdc-bb9a-3cb454356a33') {
+                    withDockerRegistry('https://index.docker.io', '058d6ef7-a988-4cdc-bb9a-3cb454356a33') {
                         docker.image("ryanb6040/midterm-project-rb:latest").push()
                     }
                 }
             }
         }
     }
+
 }
