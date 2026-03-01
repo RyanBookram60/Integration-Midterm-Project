@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     // Use withRegistry to push the image to Docker Hub
-                    docker.withRegistry(null, '5ce9a382-b520-4361-b730-b27b87e719ef') {
+                    docker.withRegistry('https://registry.hub.docker.com/', '5ce9a382-b520-4361-b730-b27b87e719ef') {
                         docker.image("ryanb6040/midterm-project-rb:latest").push()
                     }
                 }
@@ -33,6 +33,7 @@ pipeline {
     }
 
 }
+
 
 
 
