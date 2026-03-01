@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build Image') {
+            steps {
+                script {
+                    // Build the Docker image from the Dockerfile in the current directory
+                    docker.build("ryanb6040/midterm-project-rb:latest")
+                }
+            }
+        }
+        
+        stage('Run Container') {
+            steps {
+                script {
+                    // Run a container from the built image
+                    docker.image("ryanb6040/midterm-project-rb:latest").run('-p 8080:8080')
+                }
+            }
+        }
+
+        stage('Push Image to Docker Hub') {
+            steps {
+                script {
+                    // Use withRegistry to push the image to Docker Hub
+                    withRegistry('https://index.docker.io', '058d6ef7-a988-4cdc-bb9a-3cb454356a33') {
+                        docker.image("ryanb6040/midterm-project-rb:latest").push()
+                    }
+                }
+            }
+        }
+    }
+}
