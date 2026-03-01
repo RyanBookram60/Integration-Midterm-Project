@@ -15,8 +15,7 @@ pipeline {
             steps {
                 script {
                     // Run a container from the built image
-                    bat 'winpty docker run -p 3000:3000 -i -t ryanb6040/midterm-project-rb'
-                    //docker.image("ryanb6040/midterm-project-rb:latest").run('-p 3000:3000 -t')
+                    docker.image("ryanb6040/midterm-project-rb:latest").run('-p 3000:3000')
                 }
             }
         }
@@ -34,6 +33,7 @@ pipeline {
     }
 
 }
+
 
 
 
