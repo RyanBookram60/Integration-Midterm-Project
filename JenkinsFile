@@ -16,7 +16,6 @@ pipeline {
                 script {
                     // Run a container from the built image
                     docker.image("ryanb6040/midterm-project-rb:latest").run('-p 3000:3000')
-                    docker.image("ryanb6040/midterm-project-rb:latest").tag("midterm-project-rb")
                 }
             }
         }
@@ -25,7 +24,7 @@ pipeline {
             steps {
                 script {
                     // Use withRegistry to push the image to Docker Hub
-                    docker.withRegistry('https://index.docker.io', '5ce9a382-b520-4361-b730-b27b87e719ef') {
+                    docker.withRegistry('https://hub.docker.com/repository/docker/ryanb6040/midterm-project-rb/', '5ce9a382-b520-4361-b730-b27b87e719ef') {
                         docker.image("ryanb6040/midterm-project-rb:latest").push()
                     }
                 }
@@ -34,6 +33,7 @@ pipeline {
     }
 
 }
+
 
 
 
