@@ -15,8 +15,7 @@ pipeline {
             steps {
                 script {
                     // Run a container from the built image
-                    docker.image("ryanb6040/midterm-project-rb:latest").inside('-v /var/run/docker.sock:/var/run/docker.sock') {}
-                    docker.image("ryanb6040/midterm-project-rb:latest").run('-p 3000:3000 -t')
+                    docker.image("ryanb6040/midterm-project-rb:latest").run('-v /var/run/docker.sock:/var/run/docker.sock -p 3000:3000 -t')
                 }
             }
         }
