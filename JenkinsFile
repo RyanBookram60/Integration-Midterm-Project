@@ -2,13 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Test Tools') {
-            steps {
-                script {
-                    sh "mvn test"
-                }
-            }
-        }
         stage('Build Image') {
             steps {
                 script {
@@ -25,6 +18,14 @@ pipeline {
                     // Run a container from the built image
                     docker.image("ryanb6040/midterm-project-rb:latest").run('-v /var/run/docker.sock:/var/run/docker.sock -p 3000:3000 -t')
                     echo "Container is up and running!"
+                }
+            }
+        }
+
+        stage('Test Tools') {
+            steps {
+                script {
+                    sh "mvn test"
                 }
             }
         }
