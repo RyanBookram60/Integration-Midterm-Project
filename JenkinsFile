@@ -2,11 +2,19 @@ pipeline {
     agent any
 
     stages {
+        stage('Test Tools') {
+            steps {
+                script {
+                    sh "mvn test"
+                }
+            }
+        }
         stage('Build Image') {
             steps {
                 script {
                     // Build the Docker image from the Dockerfile in the current directory
                     docker.build("ryanb6040/midterm-project-rb:latest")
+                    echo "Building has finished!"
                 }
             }
         }
@@ -16,6 +24,7 @@ pipeline {
                 script {
                     // Run a container from the built image
                     docker.image("ryanb6040/midterm-project-rb:latest").run('-v /var/run/docker.sock:/var/run/docker.sock -p 3000:3000 -t')
+                    echo "Container is up and running!"
                 }
             }
         }
@@ -27,6 +36,7 @@ pipeline {
                     docker.withRegistry('https://registry.hub.docker.com/', '5ce9a382-b520-4361-b730-b27b87e719ef') {
                         docker.image("ryanb6040/midterm-project-rb:latest").push()
                     }
+                    echo "Image has been pushed!"
                 }
             }
         }
