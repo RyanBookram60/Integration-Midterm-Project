@@ -22,14 +22,6 @@ pipeline {
             }
         }
 
-        stage('Test Tools') {
-            steps {
-                script {
-                    sh "mvn test"
-                }
-            }
-        }
-
         stage('Push Image to Docker Hub') {
             steps {
                 script {
@@ -38,6 +30,17 @@ pipeline {
                         docker.image("ryanb6040/midterm-project-rb:latest").push()
                     }
                     echo "Image has been pushed!"
+                }
+            }
+        }
+
+        stage('Test Tools') {
+            agent {
+                docker {image "ryanb6040/midterm-project-rb:latest"}
+                }
+            steps {
+                script {
+                    sh "mvn test"
                 }
             }
         }
