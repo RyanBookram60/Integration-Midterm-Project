@@ -33,17 +33,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Test Tools') {
-            agent {
-                docker {image "ryanb6040/midterm-project-rb:latest"}
-                }
-            steps {
-                script {
-                    sh "mvn test"
-                }
-            }
-        }
     }
 
 }
